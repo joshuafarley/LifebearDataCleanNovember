@@ -37,16 +37,35 @@ This repository contains a Python script for cleaning and processing Lifebear us
 ## Function Overview
 
 ### `extract(input_file)`
-Reads the input CSV file and returns a DataFrame. Handles any potential errors during the reading process.
+This function is designed to read and return the data from a CSV file using `pandas`. Here’s how it works:
 
-## Customization
+1. **Input Parameter:**
+   - `input_file`: This is the file path to the CSV file you want to read. The function expects this to be passed as an argument when the function is called.
 
-You can modify the `input_file`, `output_file`, and `garbage_file` paths at the beginning of the script to work with your own data files.
+2. **Try-Except Block:**
+   - The function uses a `try-except` block to handle any potential errors that might occur while trying to read the CSV file. This ensures that the program doesn't crash if something goes wrong (for example, a file not found or an encoding issue).
+   
+3. **Reading the CSV File:**
+   - Inside the `try` block, the function uses the `pandas.read_csv()` method to read the CSV file into a pandas DataFrame.
+   - The parameters used are:
+     - `input_file`: The path to the CSV file that will be read.
+     - `delimiter=';'`: This specifies that the delimiter used in the CSV file is a semicolon (`;`). It's important to define the correct delimiter because CSV files can use different delimiters (commas, semicolons, tabs, etc.).
+     - `encoding='utf-8'`: This specifies that the file is encoded using UTF-8. This is a common character encoding that handles most characters and symbols correctly, but it can be adjusted depending on the file’s encoding.
 
-## Contributing
+4. **Return the DataFrame:**
+   - If the file is read successfully, the function returns the pandas DataFrame (`df`), which contains all the data from the CSV file.
 
-Feel free to fork this repository, submit issues, or create pull requests to enhance the functionality of this script.
+5. **Error Handling:**
+   - If an error occurs while reading the file (for instance, if the file is missing or if there's an issue with the encoding), the `except` block will catch the error.
+   - It prints a message to the console with the error details: `Error reading input file: {e}`. This allows you to see what went wrong without crashing the entire program.
 
-## License
+### Example of how it works:
 
-This project is licensed under the MIT License.
+Let’s say you have a file named `data.csv`:
+
+```python
+df = extract('data.csv')
+if df is not None:
+    print(df.head())  # Prints the first few rows of the DataFrame
+else:
+    print("Failed to read the file.")
