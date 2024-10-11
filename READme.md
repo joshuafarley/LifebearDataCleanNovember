@@ -34,7 +34,7 @@ This repository contains a Python script for cleaning and processing Lifebear us
     python lifebear.py
     ```
 
-## Function Overview
+## Function Overview e.g
 
 ### `extract(input_file)`
 This function is designed to read and return the data from a CSV file using `pandas`. Here’s how it works:
@@ -59,13 +59,3 @@ This function is designed to read and return the data from a CSV file using `pan
    - If an error occurs while reading the file (for instance, if the file is missing or if there's an issue with the encoding), the `except` block will catch the error.
    - It prints a message to the console with the error details: `Error reading input file: {e}`. This allows you to see what went wrong without crashing the entire program.
 
-### Example of how it works:
-
-Let’s say you have a file named `data.csv`:
-
-```python
-df = extract('data.csv')
-if df is not None:
-    print(df.head())  # Prints the first few rows of the DataFrame
-else:
-    print("Failed to read the file.")
